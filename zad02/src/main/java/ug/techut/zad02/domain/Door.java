@@ -1,4 +1,4 @@
-package ug.tech_ut.zad02.domain;
+package ug.techut.zad02.domain;
 
 import java.util.Date;
 
@@ -36,6 +36,15 @@ public class Door {
 
     public Date getProductionDate() {
         return productionDate;
+    }
+
+    @Override
+    public String toString() {
+        return "id=" + id +
+                ", producer='" + producer + '\'' +
+                ", productionDate=" + productionDate +
+                ", isExterior=" + isExterior +
+                ", weight=" + weight;
     }
 
     public void setProductionDate(Date productionDate) {

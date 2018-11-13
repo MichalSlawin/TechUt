@@ -1,11 +1,12 @@
-package ug.tech_ut.zad02.service;
+package ug.techut.zad02.service;
 
-import ug.tech_ut.zad02.domain.Door;
+import ug.techut.zad02.domain.Door;
 
 import java.util.List;
 
 public interface DoorManager {
     public int addDoor(Door door);
+    public int deleteDoor(int id);
     public List<Door> getAllDoors();
 
     /* batch insert - transactional */
