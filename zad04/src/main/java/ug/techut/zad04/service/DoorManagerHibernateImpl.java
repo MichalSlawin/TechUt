@@ -1,10 +1,11 @@
-package ug.techut.zad02.service;
+package ug.techut.zad04.service;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import ug.techut.zad02.domain.Door;
+import ug.techut.zad04.domain.Door;
+import ug.techut.zad04.domain.Producer;
 
 import java.sql.PreparedStatement;
 import java.util.List;
@@ -60,6 +61,27 @@ public class DoorManagerHibernateImpl implements DoorManager {
     @Override
     public List<Door> findDoorByProducer(String producer) {
         return null;
+    }
+
+    @Override
+    public void clearProducers() {
+
+    }
+
+    @Override
+    public void addProducer(Producer producer) {
+        producer.setId(null);
+        sessionFactory.getCurrentSession().persist(producer);
+    }
+
+    @Override
+    public void deleteProducer(Producer producer) {
+
+    }
+
+    @Override
+    public List<Producer> getAllProducers() {
+        return sessionFactory.getCurrentSession().getNamedQuery("producer.all").list();
     }
 
     @Override

@@ -1,7 +1,8 @@
-package ug.techut.zad02.domain;
+package ug.techut.zad04.domain;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @NamedQueries({
@@ -10,8 +11,11 @@ import java.util.Date;
 public class Door {
     private Long id;
     private Producer producer;
+    private List<Lock> locks;
+    private Handles handles;
+    private List<Insurance> insurances;
     private Date productionDate;
-    private boolean isExterior;
+    private boolean exterior;
     private double weight;
 
     @Id
@@ -33,6 +37,34 @@ public class Door {
         this.producer = producer;
     }
 
+    @OneToMany
+    public List<Lock> getLock() {
+        return locks;
+    }
+
+    public void setLock(List<Lock> locks) {
+        this.locks = locks;
+    }
+
+    @OneToOne
+    public Handles getHandles() {
+        return handles;
+    }
+
+    public void setHandles(Handles handles) {
+        this.handles = handles;
+    }
+
+    @ManyToMany
+    public List<Insurance> getInsurance() {
+        return insurances;
+    }
+
+    public void setInsurance(List<Insurance> insurances) {
+        this.insurances = insurances;
+    }
+
+    @Temporal(TemporalType.DATE)
     public Date getProductionDate() {
         return productionDate;
     }
@@ -42,7 +74,7 @@ public class Door {
         return "id=" + id +
                 ", producer='" + producer + '\'' +
                 ", productionDate=" + productionDate +
-                ", isExterior=" + isExterior +
+                ", exterior=" + exterior +
                 ", weight=" + weight;
     }
 
@@ -51,11 +83,11 @@ public class Door {
     }
 
     public boolean isExterior() {
-        return isExterior;
+        return exterior;
     }
 
     public void setExterior(boolean exterior) {
-        isExterior = exterior;
+        this.exterior = exterior;
     }
 
     public double getWeight() {
