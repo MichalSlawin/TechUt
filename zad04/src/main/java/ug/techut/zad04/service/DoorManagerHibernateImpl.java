@@ -54,34 +54,13 @@ public class DoorManagerHibernateImpl implements DoorManager {
     }
 
     @Override
-    public List<Door> findDoorById(long id) {
+    public Door getDoor(Long id) {
         return null;
     }
 
     @Override
     public List<Door> findDoorByProducer(String producer) {
         return null;
-    }
-
-    @Override
-    public void clearProducers() {
-
-    }
-
-    @Override
-    public void addProducer(Producer producer) {
-        producer.setId(null);
-        sessionFactory.getCurrentSession().persist(producer);
-    }
-
-    @Override
-    public void deleteProducer(Producer producer) {
-
-    }
-
-    @Override
-    public List<Producer> getAllProducers() {
-        return sessionFactory.getCurrentSession().getNamedQuery("producer.all").list();
     }
 
     @Override

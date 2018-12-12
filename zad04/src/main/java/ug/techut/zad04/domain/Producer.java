@@ -4,7 +4,8 @@ import javax.persistence.*;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "producer.all", query = "Select p from Producer p"),
+        @NamedQuery(name = "producer.all", query = "SELECT p FROM Producer p"),
+        @NamedQuery(name = "producer.byName", query = "SELECT p FROM Producer p WHERE p.name = :name")
 })
 public class Producer {
     private Long id;
@@ -20,6 +21,7 @@ public class Producer {
         this.id = id;
     }
 
+    @Column(unique = true, nullable = false)
     public String getName() {
         return name;
     }

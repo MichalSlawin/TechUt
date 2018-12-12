@@ -13,17 +13,8 @@ public interface DoorManager {
 
     List<Door> getDoors(PreparedStatement preparedStatement);
     List<Door> getAllDoors();
-    List<Door> findDoorById(long id);
+    Door getDoor(Long id);
     List<Door> findDoorByProducer(String producer);
-
-
-
-    void clearProducers();
-    void addProducer(Producer producer);
-    void deleteProducer(Producer producer);
-
-    List<Producer> getAllProducers();
-
 
     /* batch insert - transactional */
     void addAllDoors(List<Door> doorsList);
