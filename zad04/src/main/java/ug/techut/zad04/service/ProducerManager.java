@@ -5,7 +5,6 @@ import ug.techut.zad04.domain.Producer;
 import java.util.List;
 
 public interface ProducerManager {
-    void clearProducers();
     void addProducer(Producer producer);
     void deleteProducer(Producer producer);
 

@@ -26,11 +26,6 @@ public class DoorManagerHibernateImpl implements DoorManager {
     }
 
     @Override
-    public void clearDoors() {
-
-    }
-
-    @Override
     public void addDoor(Door door) {
         door.setId(null);
         sessionFactory.getCurrentSession().persist(door);
@@ -55,12 +50,14 @@ public class DoorManagerHibernateImpl implements DoorManager {
 
     @Override
     public Door getDoor(Long id) {
-        return null;
+        return (Door) sessionFactory.getCurrentSession().getNamedQuery("door.byId")
+                .setLong("id", id).uniqueResult();
     }
 
     @Override
-    public List<Door> findDoorByProducer(String producer) {
-        return null;
+    public List<Door> getDoors(boolean exterior) {
+        return sessionFactory.getCurrentSession().getNamedQuery("door.byExterior").
+                setBoolean("exterior", exterior).list();
     }
 
     @Override

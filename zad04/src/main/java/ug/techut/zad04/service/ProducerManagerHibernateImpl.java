@@ -24,11 +24,6 @@ public class ProducerManagerHibernateImpl implements ProducerManager {
     }
 
     @Override
-    public void clearProducers() {
-
-    }
-
-    @Override
     public void addProducer(Producer producer) {
         producer.setId(null);
         sessionFactory.getCurrentSession().persist(producer);
@@ -48,7 +43,8 @@ public class ProducerManagerHibernateImpl implements ProducerManager {
 
     @Override
     public Producer getProducer(Long id) {
-        return null;
+        return (Producer) sessionFactory.getCurrentSession().getNamedQuery("producer.byId")
+                .setLong("id", id).uniqueResult();
     }
 
     @Override

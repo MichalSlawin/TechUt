@@ -37,7 +37,7 @@ public class DoorManagerTest {
     private static final double WEIGHT1 = 100;
 
     @Test
-    public void addProducerDoorCheck() {
+    public void addDeleteProducerDoorCheck() {
         Producer producer = new Producer();
         producer.setName(PRODUCER_NAME1);
 
@@ -62,6 +62,11 @@ public class DoorManagerTest {
         List<Door> retrievedDoors = doorManager.getAllDoors();
 
         assertEquals(retrievedDoors.size(), 1);
+
+//        producerManager.deleteProducer(producerManager.getProducer(PRODUCER_NAME1));
+//        assertEquals(producerManager.getAllProducers().size(), 0);
+            doorManager.deleteDoor(door);
+            assertEquals(doorManager.getAllDoors().size(), 0);
     }
 
 

@@ -5,11 +5,18 @@ import javax.persistence.*;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "producer.all", query = "SELECT p FROM Producer p"),
-        @NamedQuery(name = "producer.byName", query = "SELECT p FROM Producer p WHERE p.name = :name")
+        @NamedQuery(name = "producer.byName", query = "SELECT p FROM Producer p WHERE p.name = :name"),
+        @NamedQuery(name = "producer.byId", query = "SELECT p FROM Producer p WHERE p.id = :id")
 })
 public class Producer {
     private Long id;
     private String name;
+
+    public Producer() {}
+
+    public Producer(String name) {
+        this.name = name;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

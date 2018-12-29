@@ -7,14 +7,13 @@ import java.sql.PreparedStatement;
 import java.util.List;
 
 public interface DoorManager {
-    void clearDoors();
     void addDoor(Door door);
     void deleteDoor(Door door);
 
     List<Door> getDoors(PreparedStatement preparedStatement);
     List<Door> getAllDoors();
     Door getDoor(Long id);
-    List<Door> findDoorByProducer(String producer);
+    List<Door> getDoors(boolean exterior);
 
     /* batch insert - transactional */
     void addAllDoors(List<Door> doorsList);

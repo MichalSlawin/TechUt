@@ -6,7 +6,9 @@ import java.util.List;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "door.all", query = "Select d from Door d"),
+        @NamedQuery(name = "door.all", query = "SELECT d FROM Door d"),
+        @NamedQuery(name = "door.byId", query = "SELECT d FROM Door d WHERE d.id = :id"),
+        @NamedQuery(name = "door.byExterior", query = "SELECT d FROM Door d WHERE d.exterior = :exterior")
 })
 public class Door {
     private Long id;
@@ -17,6 +19,18 @@ public class Door {
     private Date productionDate;
     private boolean exterior;
     private double weight;
+
+    public Door() {}
+
+    public Door(Producer producer, List<Lock> locks, Handles handles, List<Insurance> insurances, Date productionDate, boolean exterior, double weight) {
+        this.producer = producer;
+        this.locks = locks;
+        this.handles = handles;
+        this.insurances = insurances;
+        this.productionDate = productionDate;
+        this.exterior = exterior;
+        this.weight = weight;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
