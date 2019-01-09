@@ -9,8 +9,8 @@ import java.util.List;
 public interface DoorManager {
     void addDoor(Door door);
     void deleteDoor(Door door);
+    void updateDoor(Door door);
 
-    List<Door> getDoors(PreparedStatement preparedStatement);
     List<Door> getAllDoors();
     Door getDoor(Long id);
     List<Door> getDoors(boolean exterior);

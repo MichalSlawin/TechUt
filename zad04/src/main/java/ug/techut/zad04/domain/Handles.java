@@ -3,10 +3,21 @@ package ug.techut.zad04.domain;
 import javax.persistence.*;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "handles.all", query = "SELECT h FROM Handles h"),
+        @NamedQuery(name = "handles.byId", query = "SELECT h FROM Handles h WHERE h.id = :id")
+})
 public class Handles {
     private Long id;
     private Producer producer;
     private String shape;
+
+    public Handles() {}
+
+    public Handles(Producer producer, String shape) {
+        this.producer = producer;
+        this.shape = shape;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

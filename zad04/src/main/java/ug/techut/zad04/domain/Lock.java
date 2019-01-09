@@ -3,10 +3,21 @@ package ug.techut.zad04.domain;
 import javax.persistence.*;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "lock.all", query = "SELECT l FROM Lock l"),
+        @NamedQuery(name = "lock.byId", query = "SELECT l FROM Lock l WHERE l.id = :id")
+})
 public class Lock {
     private Long id;
     private Producer producer;
     private boolean electronic;
+
+    public Lock() {}
+
+    public Lock(Producer producer, boolean electronic) {
+        this.producer = producer;
+        this.electronic = electronic;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

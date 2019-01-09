@@ -4,11 +4,23 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "insurance.all", query = "SELECT i FROM Insurance i"),
+        @NamedQuery(name = "insurance.byId", query = "SELECT i FROM Insurance i WHERE i.id = :id")
+})
 public class Insurance {
     private Long id;
     private String type;
     private Date startDate;
     private Date endDate;
+
+    public Insurance() {}
+
+    public Insurance(String type, Date startDate, Date endDate) {
+        this.type = type;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

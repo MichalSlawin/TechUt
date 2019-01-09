@@ -37,6 +37,11 @@ public class ProducerManagerHibernateImpl implements ProducerManager {
     }
 
     @Override
+    public void updateProducer(Producer producer) {
+        sessionFactory.getCurrentSession().update(producer);
+    }
+
+    @Override
     public List<Producer> getAllProducers() {
         return sessionFactory.getCurrentSession().getNamedQuery("producer.all").list();
     }
@@ -53,4 +58,12 @@ public class ProducerManagerHibernateImpl implements ProducerManager {
                 .setString("name", name).uniqueResult();
     }
 
+    @Override
+    @Transactional
+    public void addAllProducers(List<Producer> producers) {
+        for(Producer producer : producers) {
+            producer.setId(null);
+            sessionFactory.getCurrentSession().persist(producer);
+        }
+    }
 }

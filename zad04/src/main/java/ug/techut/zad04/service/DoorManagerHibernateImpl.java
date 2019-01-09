@@ -39,8 +39,8 @@ public class DoorManagerHibernateImpl implements DoorManager {
     }
 
     @Override
-    public List<Door> getDoors(PreparedStatement preparedStatement) {
-        return null;
+    public void updateDoor(Door door) {
+        sessionFactory.getCurrentSession().update(door);
     }
 
     @Override
