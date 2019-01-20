@@ -17,19 +17,26 @@ public class DoorManagerTest {
     private static DoorManagerJDBC doorManagerJDBC = new DoorManagerJDBC();
 
     public static void main(String [] args) {
-        //doorManagerJDBC.clearDoors();
-        //crdDoorTest();
-        //addAllDoorsTest();
-        //printAllDoors();
-        printDoors(doorManagerJDBC.findDoorById(0));
-        printDoors(doorManagerJDBC.findDoorByProducer("test"));
+        doorManagerJDBC.clearDoors();
+        crdDoorTest();
+        doorManagerJDBC.clearDoors();
+        addAllDoorsTest();
+        printAllDoors();
+        findDoorTest();
     }
 
     private static void crdDoorTest() {
-        doorManagerJDBC.addDoor(new Door("Porta", DATE1, true, 16));
-        doorManagerJDBC.addDoor(new Door("BRW", DATE1, false, 0));
-        doorManagerJDBC.addDoor(new Door("test", DATE1, false, 15));
-        doorManagerJDBC.deleteDoor(0);
+        Door door1 = new Door("Porta", DATE1, true, 16);
+        doorManagerJDBC.addDoor(door1);
+//        Door door2 = new Door("BRW", DATE2, false, 0);
+//        doorManagerJDBC.addDoor(door2);
+        Door door3 = new Door("test", DATE1, false, 15);
+        doorManagerJDBC.addDoor(door3);
+
+        doorManagerJDBC.deleteDoor(door1.getId());
+
+        if(doorManagerJDBC.getAllDoors().size() == 1) System.out.println("crdDoorTest SUCCESS");
+        else System.out.println("crdDoorTest FAILURE");
     }
 
     private static void addAllDoorsTest() {
@@ -38,14 +45,30 @@ public class DoorManagerTest {
             Date date = new SimpleDateFormat( "yyyy-MM-dd" ).parse( "2012-07-22" );
 
             doorsList.add(new Door("Porta", date, true, 12));
-            doorsList.add(new Door("BRW", date, false, 0));
+            doorsList.add(new Door("BRW", date, false, 10));
             doorsList.add(new Door("test", date, false, 15));
-
-            doorManagerJDBC.addAllDoors(doorsList);
 
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
+        doorManagerJDBC.addAllDoors(doorsList);
+
+        if(doorManagerJDBC.getAllDoors().size() == 3) System.out.println("addAllDoorsTest SUCCESS");
+        else System.out.println("addAllDoorsTest FAILURE");
+
+    }
+
+    private static void findDoorTest() {
+        List<Door> idDoors = doorManagerJDBC.findDoorById(2);
+        printDoors(idDoors);
+        if(idDoors.size() > 0) System.out.println("findDoorTest by id SUCCESS");
+        else System.out.println("findDoorTest by id FAILURE");
+
+        List<Door> producerDoors = doorManagerJDBC.findDoorByProducer("test");
+        printDoors(producerDoors);
+        if(producerDoors.size() > 0) System.out.println("findDoorTest by producer SUCCESS");
+        else System.out.println("findDoorTest by producer FAILURE");
     }
 
     private static void printDoors(List<Door> doorsList) {
@@ -58,10 +81,5 @@ public class DoorManagerTest {
     private static void printAllDoors() {
         List<Door> doorsList = doorManagerJDBC.getAllDoors();
         printDoors(doorsList);
-    }
-
-    private static void findDoorTest() {
-        printDoors(doorManagerJDBC.findDoorById(1));
-        printDoors(doorManagerJDBC.findDoorByProducer("Porta"));
     }
 }

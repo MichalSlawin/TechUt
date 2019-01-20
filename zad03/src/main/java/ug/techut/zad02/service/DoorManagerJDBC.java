@@ -3,7 +3,6 @@ package ug.techut.zad02.service;
 import ug.techut.zad02.domain.Door;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +18,6 @@ public class DoorManagerJDBC implements DoorManager {
     private PreparedStatement getAllDoorsStmt;
     private PreparedStatement findDoorByIdStmt;
     private PreparedStatement findDoorByProducerStmt;
-
-
 
     private Statement statement;
     ResultSet rs;
@@ -81,14 +78,14 @@ public class DoorManagerJDBC implements DoorManager {
             count = addDoorStmt.executeUpdate();
 
         } catch (SQLException e) {
-            if(door.getWeight() <= 0) System.out.println("Waga musi byc wieszka od 0");
+            if(door.getWeight() <= 0) System.out.println("Waga musi byc wieksza od 0");
             e.printStackTrace();
         }
         return count;
     }
 
     @Override
-    public int deleteDoor(int id) {
+    public int deleteDoor(long id) {
         int count = 0;
 
         try {

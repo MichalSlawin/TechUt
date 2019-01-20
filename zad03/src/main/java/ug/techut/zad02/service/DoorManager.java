@@ -8,7 +8,7 @@ import java.util.List;
 public interface DoorManager {
     void clearDoors();
     int addDoor(Door door);
-    int deleteDoor(int id);
+    int deleteDoor(long id);
 
     List<Door> getDoors(PreparedStatement preparedStatement);
     List<Door> getAllDoors();
