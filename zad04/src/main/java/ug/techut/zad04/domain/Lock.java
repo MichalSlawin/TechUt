@@ -5,7 +5,9 @@ import javax.persistence.*;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "lock.all", query = "SELECT l FROM Lock l"),
-        @NamedQuery(name = "lock.byId", query = "SELECT l FROM Lock l WHERE l.id = :id")
+        @NamedQuery(name = "lock.byId", query = "SELECT l FROM Lock l WHERE l.id = :id"),
+        @NamedQuery(name = "lock.byElectronic", query = "SELECT l FROM Lock l WHERE l.electronic = :electronic"),
+        @NamedQuery(name = "lock.byProducer", query = "SELECT l FROM Lock l WHERE l.producer = :producer")
 })
 public class Lock {
     private Long id;

@@ -8,6 +8,7 @@ import ug.techut.zad04.domain.Door;
 import ug.techut.zad04.domain.Producer;
 
 import java.sql.PreparedStatement;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -58,6 +59,12 @@ public class DoorManagerHibernateImpl implements DoorManager {
     public List<Door> getDoors(boolean exterior) {
         return sessionFactory.getCurrentSession().getNamedQuery("door.byExterior").
                 setBoolean("exterior", exterior).list();
+    }
+
+    @Override
+    public List<Door> getNewerDoors(Date date) {
+        return sessionFactory.getCurrentSession().getNamedQuery("door.byNewer").
+                setDate("date", date).list();
     }
 
     @Override

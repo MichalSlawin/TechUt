@@ -51,4 +51,10 @@ public class HandlesManagerHibernateImpl implements HandlesManager {
         return (Handles) sessionFactory.getCurrentSession().getNamedQuery("handles.byId")
                 .setLong("id", id).uniqueResult();
     }
+
+    @Override
+    public List<Handles> getHandles(String shape) {
+        return sessionFactory.getCurrentSession().getNamedQuery("handles.byShape")
+                .setString("shape", shape).list();
+    }
 }

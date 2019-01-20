@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import ug.techut.zad04.domain.Lock;
+import ug.techut.zad04.domain.Producer;
 
 import java.util.List;
 
@@ -51,5 +52,17 @@ public class LockManagerHibernateImpl implements LockManager {
     public Lock getLock(Long id) {
         return (Lock) sessionFactory.getCurrentSession().getNamedQuery("lock.byId")
                 .setLong("id", id).uniqueResult();
+    }
+
+    @Override
+    public List<Lock> getLocks(boolean electronic) {
+        return sessionFactory.getCurrentSession().getNamedQuery("lock.byElectronic")
+                .setBoolean("electronic", electronic).list();
+    }
+
+    @Override
+    public List<Lock> getLocks(Producer producer) {
+        return sessionFactory.getCurrentSession().getNamedQuery("lock.byProducer")
+                .setParameter("producer", producer).list();
     }
 }

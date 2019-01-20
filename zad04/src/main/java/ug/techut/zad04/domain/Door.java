@@ -8,7 +8,8 @@ import java.util.List;
 @NamedQueries({
         @NamedQuery(name = "door.all", query = "SELECT d FROM Door d"),
         @NamedQuery(name = "door.byId", query = "SELECT d FROM Door d WHERE d.id = :id"),
-        @NamedQuery(name = "door.byExterior", query = "SELECT d FROM Door d WHERE d.exterior = :exterior")
+        @NamedQuery(name = "door.byExterior", query = "SELECT d FROM Door d WHERE d.exterior = :exterior"),
+        @NamedQuery(name = "door.byNewer", query = "SELECT d FROM Door d WHERE d.productionDate > :date")
 })
 public class Door {
     private Long id;

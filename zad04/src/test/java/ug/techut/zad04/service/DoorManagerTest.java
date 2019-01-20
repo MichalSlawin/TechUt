@@ -92,14 +92,14 @@ public class DoorManagerTest {
 
         Door door1 = new Door();
         door1.setProducer(producerManager.getProducer(PRODUCER_NAME1));
-        door1.setProductionDate(DATE1);
+        door1.setProductionDate(DATE2);
         door1.setExterior(false);
         door1.setWeight(WEIGHT1);
         doorManager.addDoor(door1);
 
         Door door2 = new Door();
         door2.setProducer(producerManager.getProducer(PRODUCER_NAME2));
-        door2.setProductionDate(DATE2);
+        door2.setProductionDate(DATE3);
         door2.setExterior(true);
         door2.setWeight(WEIGHT2);
         doorManager.addDoor(door2);
@@ -124,6 +124,24 @@ public class DoorManagerTest {
         doorManager.updateDoor(door);
 
         assertEquals(door.getWeight(), WEIGHT1, DELTA);
+    }
+
+    @Test
+    public void getNewerDoorCheck() {
+        Door newestDoor = new Door();
+        newestDoor.setProductionDate(DATE4);
+        doorManager.addDoor(newestDoor);
+
+        Door oldestDoor = new Door();
+        oldestDoor.setProductionDate(DATE1);
+        doorManager.addDoor(oldestDoor);
+
+        Door oldestDoor2 = new Door();
+        oldestDoor2.setProductionDate(DATE1);
+        doorManager.addDoor(oldestDoor2);
+
+        List<Door> retrievedDoors = doorManager.getNewerDoors(DATE2);
+        assertEquals(retrievedDoors.size(), 1);
     }
 
 }

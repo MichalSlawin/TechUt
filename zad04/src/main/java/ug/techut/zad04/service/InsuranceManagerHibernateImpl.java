@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import ug.techut.zad04.domain.Insurance;
 
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -50,5 +51,17 @@ public class InsuranceManagerHibernateImpl implements InsuranceManager {
     public Insurance getInsurance(Long id) {
         return (Insurance) sessionFactory.getCurrentSession().getNamedQuery("insurance.byId")
                 .setLong("id", id).uniqueResult();
+    }
+
+    @Override
+    public List<Insurance> getInsurances(Date date) {
+        return sessionFactory.getCurrentSession().getNamedQuery("insurance.byDate").
+                setDate("date", date).list();
+    }
+
+    @Override
+    public List<Insurance> getInsurances(String type) {
+        return sessionFactory.getCurrentSession().getNamedQuery("insurance.byType").
+                setString("type", type).list();
     }
 }

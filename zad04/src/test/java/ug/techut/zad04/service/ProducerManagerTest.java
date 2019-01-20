@@ -46,7 +46,8 @@ public class ProducerManagerTest {
         assertSame(producer, retrievedProducer);
     }
 
-    public void addDeleteGetAllProducersCheck() {
+    @Test
+    public void getAllProducersCheck() {
         Producer producer1 = new Producer(PRODUCER_NAME1);
         Producer producer2 = new Producer(PRODUCER_NAME2);
         Producer producer3 = new Producer(PRODUCER_NAME_HANDLES);
@@ -57,5 +58,23 @@ public class ProducerManagerTest {
 
         producerManager.addAllProducers(producers);
         assertEquals(producerManager.getAllProducers().size(), 3);
+    }
+
+    @Test
+    public void updateProducerCheck() {
+        Producer producer = new Producer(PRODUCER_NAME1);
+        producerManager.addProducer(producer);
+
+        producer.setName(PRODUCER_NAME2);
+        assertEquals(producerManager.getProducer(PRODUCER_NAME2), producer);
+    }
+
+    @Test
+    public void deleteProducerCheck() {
+        Producer producer = new Producer(PRODUCER_NAME1);
+        producerManager.addProducer(producer);
+
+        producerManager.deleteProducer(producer);
+        assertEquals(producerManager.getAllProducers().size(), 0);
     }
 }

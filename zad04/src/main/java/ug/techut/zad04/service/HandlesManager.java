@@ -10,5 +10,6 @@ public interface HandlesManager {
     void updateHandles(Handles handles);
 
     List<Handles> getAllHandles();
+    List<Handles> getHandles(String shape);
     Handles getHandles(Long id);
 }

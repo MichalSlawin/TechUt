@@ -6,7 +6,10 @@ import java.util.Date;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "insurance.all", query = "SELECT i FROM Insurance i"),
-        @NamedQuery(name = "insurance.byId", query = "SELECT i FROM Insurance i WHERE i.id = :id")
+        @NamedQuery(name = "insurance.byId", query = "SELECT i FROM Insurance i WHERE i.id = :id"),
+        @NamedQuery(name = "insurance.byDate", query = "SELECT i FROM Insurance i " +
+                "WHERE :date >= i.startDate AND :date <= i.endDate"),
+        @NamedQuery(name = "insurance.byType", query = "SELECT i FROM Insurance i WHERE i.type = :type")
 })
 public class Insurance {
     private Long id;

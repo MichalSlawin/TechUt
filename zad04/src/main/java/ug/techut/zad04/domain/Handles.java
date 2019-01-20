@@ -5,7 +5,8 @@ import javax.persistence.*;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "handles.all", query = "SELECT h FROM Handles h"),
-        @NamedQuery(name = "handles.byId", query = "SELECT h FROM Handles h WHERE h.id = :id")
+        @NamedQuery(name = "handles.byId", query = "SELECT h FROM Handles h WHERE h.id = :id"),
+        @NamedQuery(name = "handles.byShape", query = "SELECT h FROM Handles h WHERE h.shape = :shape")
 })
 public class Handles {
     private Long id;
